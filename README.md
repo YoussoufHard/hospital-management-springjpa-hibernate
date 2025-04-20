@@ -3,7 +3,7 @@
 ## Description
 Ce projet utilise Spring Boot avec JPA et Hibernate pour la gestion d'une application de **gestion des patients** dans un hôpital. Les entités principales incluent **Patient**, **RendezVous** (rendez-vous médicaux), et **Medecin** (médecin).
 
-L'application utilise **H2** comme base de données en mémoire pour faciliter le développement et les tests, mais peut être facilement migrée vers **MySQL** pour un environnement de production.
+L'application utilise **H2** comme base de données en mémoire pour faciliter le développement et les tests, par la suite on migrera vers **MySQL** pour un environnement de production.
 
 ## Technologies Utilisées
 - **Spring Boot 3.x**
