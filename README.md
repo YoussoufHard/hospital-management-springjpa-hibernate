@@ -53,6 +53,8 @@ Les entités et les relations ont été validées en utilisant la base H2 en mé
 - Après avoir exécuté l'application, les tables sont visibles dans la console H2 [http://localhost:8080/h2-console](http://localhost:8080/h2-console).
 - La création et la mise à jour des entités sont automatiquement effectuées grâce à la configuration `ddl-auto=update`.
 - voici la capture de la console h2
+  ![Capture Console H2](/Captures/img.png)
+
 
 ## Améliorations Futures
 - Migration vers **MySQL** pour un environnement de production.
