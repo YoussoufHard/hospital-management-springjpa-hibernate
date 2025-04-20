@@ -71,9 +71,24 @@ RendezVous
 Consultation
 ![Capture Console H2_Consultation](/Captures/img_4.png)
 
-#### Capture d'écran de l'URL `http://localhost:8080/patients`
-Cette capture montre la liste des patients récupérée depuis l'endpoint **`/patient`** de l'application, accessible via l'URL **`http://localhost:8080/patients`**.
+#### Capture d'écran de l'URL les operation CRUD `http://localhost:8086/patients`
+Cette capture montre la liste des patients récupérée depuis l'endpoint **`/patients`** de l'application, accessible via l'URL **`http://localhost:8086/patients`**.
 ![Capture listePatients_URL](/Captures/img_5.png)
+
+1. Ajout d'un patient (POST) avec postman
+   ![Capture Creation](/Captures/img_6.png)
+
+2. Consulter un patient par ID (GET) avec postman
+   ![Capture consulter](/Captures/img_7.png)
+
+3. Rechercher un patient par nom (GET)
+   ![Capture RechercheNom](/Captures/img_8.png)
+
+4. Mettre à jour un patient (PUT)
+   ![Capture Update](/Captures/img_9.png)
+
+5. Supprimer un patient (DELETE)
+   ![Capture Delete](/Captures/img_10.png)
 
 
 ## Améliorations Futures
