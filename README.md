@@ -71,6 +71,11 @@ RendezVous
 Consultation
 ![Capture Console H2_Consultation](/Captures/img_4.png)
 
+#### Capture d'écran de l'URL `http://localhost:8080/patients`
+Cette capture montre la liste des patients récupérée depuis l'endpoint **`/patient`** de l'application, accessible via l'URL **`http://localhost:8080/patients`**.
+![Capture listePatients_URL](/Captures/img_5.png)
+
+
 ## Améliorations Futures
 - Migration vers **MySQL** pour un environnement de production.
 - Ajout d'une interface utilisateur avec **Thymeleaf** ou **React** pour interagir avec l'application.
