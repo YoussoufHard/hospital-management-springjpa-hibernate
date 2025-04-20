@@ -5,6 +5,7 @@ import ma.enset.jpa_hibernate_demo.repositories.ConsultationRepository;
 import ma.enset.jpa_hibernate_demo.repositories.MedecinRepository;
 import ma.enset.jpa_hibernate_demo.repositories.PatientRepository;
 import ma.enset.jpa_hibernate_demo.repositories.RendezVousRepository;
+import ma.enset.jpa_hibernate_demo.service.IHospitalService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,10 +23,10 @@ public class JpaHibernateDemoApplication {
 
     @Bean
     CommandLineRunner start(
+            IHospitalService hospitalService,
             PatientRepository patientRepository,
-            MedecinRepository medecinRepository,
             RendezVousRepository rendezVousRepository,
-            ConsultationRepository consultationRepository) {
+            MedecinRepository medecinRepository) {
         return args -> {
             Stream.of("Youssouf","Hassan" ,"Najat","Salma")
                     .forEach(name -> {
@@ -33,7 +34,7 @@ public class JpaHibernateDemoApplication {
                         patient.setNom(name);
                         patient.setDateNaissance(new Date());
                         patient.setMalade(false);
-                        patientRepository.save(patient);
+                        hospitalService.savePatient(patient);
                     });
             Stream.of("Ayman","Hajar" ,"Yasmine")
                     .forEach(name -> {
@@ -41,7 +42,7 @@ public class JpaHibernateDemoApplication {
                         medecin.setNom(name);
                         medecin.setEmail(name+"@gmail.com");
                         medecin.setSpecialite(Math.random()>0.5?"Cardio":"Dentiste");
-                        medecinRepository.save(medecin);
+                        hospitalService.saveMedecin(medecin);
                     });
 
             Patient patient= patientRepository.findById(1L).orElse(null);
@@ -54,14 +55,14 @@ public class JpaHibernateDemoApplication {
             rendezVous.setStatus(StatusRDV.PENDING);
             rendezVous.setMedecin(medecin);
             rendezVous.setPatient(patient);
-            rendezVousRepository.save(rendezVous);
+            hospitalService.saveRDV(rendezVous);
 
-            RendezVous rendezVous1= rendezVousRepository.findById(1L).orElse(null);
+            RendezVous rendezVous1= rendezVousRepository.findAll().get(0);
             Consultation consultation = new Consultation();
             consultation.setDateConsultation(new Date());
             consultation.setRendezVous(rendezVous1);
             consultation.setRapport("Rapport de la Consultation ...");
-            consultationRepository.save(consultation);
+            hospitalService.saveConsultation(consultation);
 
         } ;
     }
