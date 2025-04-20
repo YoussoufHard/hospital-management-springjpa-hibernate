@@ -90,8 +90,73 @@ Cette capture montre la liste des patients récupérée depuis l'endpoint **`/pa
 5. Supprimer un patient (DELETE)
    ![Capture Delete](/Captures/img_10.png)
 
+   
+## Migration vers MySQL
 
-## Améliorations Futures
-- Migration vers **MySQL** pour un environnement de production.
-- Ajout d'une interface utilisateur avec **Thymeleaf** ou **React** pour interagir avec l'application.
-- Ajouter une authentification avec **Spring Security**.
+#### 1. **Ajouter la dépendance MySQL dans `pom.xml` (Maven)**
+
+Pour utiliser MySQL avec Spring Boot, tu dois ajouter la dépendance correspondante dans ton fichier `pom.xml`.
+
+```xml
+<dependency>
+  <groupId>com.mysql</groupId>
+  <artifactId>mysql-connector-j</artifactId>
+  <scope>runtime</scope>
+</dependency>
+
+```
+
+#### 2. **Configurer la connexion à MySQL dans `application.properties`**
+
+Voici la configuration nécessaire pour connecter ton application à une base de données **MySQL** :
+
+```properties
+# Configuration pour MySQL
+spring.datasource.url=jdbc:mysql://localhost:3306/hopital_gestion?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=
+
+# Initialisation de la source de données
+spring.jpa.defer-datasource-initialization=true
+spring.sql.init.mode=always
+
+# Hibernate
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto=update
+
+# Afficher les requêtes SQL formatées
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+```
+
+##### Explications des propriétés :
+
+- **spring.datasource.url** : L'URL de connexion à MySQL. Ici, nous connectons l'application à la base de données `hopital_gestion` sur `localhost:3306`. L'option `createDatabaseIfNotExist=true` permet de créer la base de données automatiquement si elle n'existe pas. Les paramètres `useSSL=false` et `serverTimezone=UTC` sont ajoutés pour éviter des problèmes de connexion SSL et de timezone.
+- **spring.datasource.username et spring.datasource.password** : Les informations de connexion à MySQL.
+- **spring.jpa.defer-datasource-initialization** : Permet de retarder l'initialisation de la source de données jusqu'après l'exécution de toutes les commandes.
+- **spring.sql.init.mode** : Définit que l'initialisation des données SQL se fait toujours au démarrage de l'application.
+- **spring.jpa.database-platform** : Utilise `MySQL8Dialect` pour une compatibilité optimale avec MySQL 8.
+- **spring.jpa.hibernate.ddl-auto** : Configure Hibernate pour qu'il gère automatiquement la création et la mise à jour des tables (`update` pour mettre à jour le schéma si nécessaire).
+- **spring.jpa.show-sql** : Affiche les requêtes SQL générées par Hibernate dans la console pour faciliter le débogage.
+- **spring.jpa.properties.hibernate.format_sql** : Formate les requêtes SQL pour les rendre plus lisibles dans la console.
+
+
+#### 3. **Tester la migration**
+
+- Lance l'application Spring Boot.
+- Vérification dans la base de données MySQL que les tables sont créées automatiquement .
+- Utilise les opérations CRUD via Postman ou l'interface Web pour vérifier que tout fonctionne correctement avec MySQL  (fait )
+
+Capture de la base de donner MySQL avec les données
+
+  ![Capture de la BD MySQL](/Captures/img_11.png)
+
+  ![Capture de la BD MySQL_Patient](/Captures/img_12.png)
+
+Capture d'ajout POSTMAN
+![img.png](img.png)
+  ![Capture test postman](/Captures/img_13.png)
+
+Capture de la table patient apres test d'ajout
+
+![Capture de la BD MySQL_Patient](/Captures/img_14.png)
