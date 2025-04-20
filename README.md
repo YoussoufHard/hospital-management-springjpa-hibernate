@@ -160,3 +160,17 @@ Capture d'ajout POSTMAN
 Capture de la table patient apres test d'ajout
 
 ![Capture de la BD MySQL_Patient](/Captures/img_14.png)
+
+---
+
+## 📑 Auteur
+👨‍💻 **TANGARA YOUSSOUF** - *Projet réalisé dans le cadre du TP Spring Boot*   
+
+---
+
+  **Encadré par** : **Prof. Mohamed Youssfi**
+
+
+---
+
+💡 **Le projet sera amélioré progressivement avec les nouvelles fonctionnalités.**
